@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  postgres:
+    image: postgres:9.6
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: gwpy_dh
+      POSTGRES_USER: gwpy_dh
+      POSTGRES_PASSWORD: gwpy_dh

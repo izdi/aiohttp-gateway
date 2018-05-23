@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+aiohttp = "*"
+aiopg = "*"
+alembic = "*"
+psycopg2 = "*"
+pydantic = "*"
+sqlalchemy = "*"
+
+[dev-packages]
+pytest-aiohttp = "*"
+pytest-pythonpath = "*"
+
+[requires]
+python_version = "3.6"
+
+[scripts]
+dbshell = "scripts/dbshell.sh"
+makemigrations = "scripts/makemigrations.sh"
+migrate = "scripts/migrate.sh"
+service = "scripts/run.sh"
+tests = "py.test"

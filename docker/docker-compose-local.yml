@@ -1,0 +1,29 @@
+version: '2.1'
+services:
+  gateway:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    command: ["bash", "-c", "scripts/migrate.sh && scripts/run.sh"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    environment:
+      POSTGRES__HOST: postgres
+      POSTGRES__PORT: 5432
+      POSTGRES__DATABASE: gwpy_dh
+      POSTGRES__USER: gwpy_dh
+      POSTGRES__PASSWORD: gwpy_dh
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_DB: gwpy_dh
+      POSTGRES_USER: gwpy_dh
+      POSTGRES_PASSWORD: gwpy_dh
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      retries: 10
+      interval: 10s
+      timeout: 2s
